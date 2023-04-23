@@ -2,7 +2,7 @@
 
 mdx = md + x
 
-## demo
+## 输入
 
 ```
 let a = 'Hello mdx';
@@ -15,6 +15,10 @@ ${b.map(o=>'- '+o).join('\n')}
 - [ ] 支持import 语法
 - [ ] 支持文档自动生成
 ```
+
+copy 上面内容 [mdx](https://bitmagic.space/mdx/) 粘贴查看效果
+
+## 输出
 
 **Hello mdx**
 
