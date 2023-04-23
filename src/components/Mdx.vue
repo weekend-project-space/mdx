@@ -17,14 +17,16 @@ function mdx(str) {
 
 watch(value, (v) => {
   debounce(() => {
+    localStorage.setItem("mdx-value", v);
     md.value = mdx(v);
-  }, 3000)();
+  }, 1000)();
 });
+value.value = localStorage.getItem("mdx-value");
 </script>
 <template>
   <div class="grid">
     <textarea class="form-control" v-model="value" rows="9"></textarea>
-    <div v-html="micromark(md)"></div>
+    <div v-html="micromark(md)" class="form-control page"></div>
   </div>
 </template>
 
@@ -33,5 +35,8 @@ watch(value, (v) => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
+}
+.page {
+  background: #f9f9f9;
 }
 </style>
