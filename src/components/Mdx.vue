@@ -1,21 +1,25 @@
 <script setup>
 import micromark from "../utils/micromark";
-import { ref, computed } from "vue";
+import { debounce } from "lodash-es";
+import { ref, computed, watch } from "vue";
 
 const value = ref("");
 
-const md = computed(() => mdx(value.value));
+const md = ref("");
 
 function mdx(str) {
   if (str.indexOf("------") > 0) {
     let v = str.split("------");
     str = eval(v[0] + "`" + v[1] + "`");
-    console.log(str);
-    return str;
-  } else {
-    return str;
   }
+  return str;
 }
+
+watch(value, (v) => {
+  debounce(() => {
+    md.value = mdx(v);
+  }, 3000)();
+});
 </script>
 <template>
   <div class="grid">
